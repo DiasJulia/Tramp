@@ -46,10 +46,10 @@
                                     </div>
                                     <form class="user" action="/login" method="POST">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email">
+                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email" name="email">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="senha">
+                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="senha" name="senha">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -57,7 +57,7 @@
                                                 <label class="custom-control-label" for="customCheck">lembrar de mim</label>
                                             </div>
                                         </div>
-                                        <a href="#" onclick="inacessivel()" class="btn btn-primary btn-user btn-block">login</a>
+                                        <button class="btn btn-primary btn-user btn-block" type="submit"><a>login</a><button></button>
                                         <hr>
                                         <a href="../index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Entrar com Google

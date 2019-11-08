@@ -34,11 +34,21 @@ MongoClient.connect(uri, (err, client) => {
     });
 })
 
-app.post('/login', (req, res) => {
-    db.collection('data').save(req.body, (err, result) => {
+app.post('/cadastro', (req, res) => {
+    db.collection('Cliente').save(req.body, (err, result) => {
         if (err) return console.log(err);
 
         console.log("Está salvo no database");
         res.redirect('/');
     });
+});
+
+app.get('/login', (req, res) => {
+    let cursor = db.collection('Cliente').find();
+});
+app.post('/login', (req, res) => {
+    db.collection('Cliente').find().toArray((err, results) => {
+        console.log(results);
+    })
+    res.redirect('/');
 });
