@@ -26,12 +26,14 @@ CoinRouter.route('/servicos').get(function(req, res) {
     res.render('servicos');
 });
 
+CoinRouter.route('/404').get(function(req, res){
+    res.render('404');
+})
+
+CoinRouter.route('/voltar').get(function(req, res){
+    res.render('login');
+})
+
 const Coin = require('../models/Coin.model');;
 
-CoinRouter.route('post').post(function(req, res) {
-    const usuario = new user(req.body);
-    console.log(usuario);
-    res.redirect("/login")
-
-})
 module.exports = CoinRouter;

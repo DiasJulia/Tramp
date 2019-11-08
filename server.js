@@ -7,6 +7,7 @@ const port = 3000;
 const path = require('path');
 const bodyParser = require('body-parser');
 const CoinRouter = require('./routes/CoinRouter');
+const alertnode = require('alert-node')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -43,12 +44,35 @@ app.post('/cadastro', (req, res) => {
     });
 });
 
+app.post('/cadastro2', (req, res) => {
+    db.collection('Prestador').save(req.body, (err, result) => {
+        if (err) return console.log(err);
+
+        console.log("Está salvo no database");
+        res.redirect('/');
+    });
+});
+
+
 app.get('/login', (req, res) => {
     let cursor = db.collection('Cliente').find();
 });
+
 app.post('/login', (req, res) => {
     db.collection('Cliente').find().toArray((err, results) => {
-        console.log(results);
+        for (let i = 0; i < results.length; i++) {
+            if (results[i].email === req.body.email && results[i].senha === req.body.senha) {
+                console.log("Bem vindo, " + results[i].nome);
+                res.redirect('/');
+                break;
+            }
+            if (i = results.length) {
+                console.log("Usuário e/ou senha não compatíveis. Por favor verifique o que foi digitado.");
+                res.redirect("/404");
+            }
+        }
     })
-    res.redirect('/');
+    app.post('/voltar', (req, res) => {
+        res.redirect('/login')
+    })
 });
